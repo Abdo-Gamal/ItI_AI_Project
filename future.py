@@ -3,6 +3,8 @@ from nltk.stem import PorterStemmer
 import numpy as np
 import pandas as pd
 import string
+#                                            preprocess section
+#                                            preprocess section
 
 #                                         functions to remove punctuation from dataset
 PUNCT_TO_REMOVE=string.punctuation
@@ -34,4 +36,17 @@ text3="I am loving to player games . I liked gaming very mach . one of my favori
 def DeEmojify(text):
     return text.encode("ascii","ignore").decode("ascii")
 text4="📙 Emojipedia — 😃 Home of Emoji Meanings 💁👌🎍😍"
-print(DeEmojify(text4))
+# print(DeEmojify(text4))
+
+#                                            future extraction section
+#                                            future extraction section
+
+#                                              uniqe function 
+def Uniqe(sequence):
+    seen=set()
+    return [x for x in sequence if not (x in seen or seen.add(x))]
+
+#                                              uniqe function 
+def vectorize(tolens):
+    vector=[]
+    return [x for x in sequence if not (x in seen or seen.add(x))]
