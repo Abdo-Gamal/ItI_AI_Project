@@ -15,15 +15,16 @@ def prepareDataSet(string_dataset):
    string_dataset =pp.DeEmojify(string_dataset)
    return string_dataset.split()
 
-def make_future(email_form_original_dataset,is_spam):
+def make_Dataframe(email_form_original_dataset,is_spam,tokens):
    for i,email in enumerate(email_form_original_dataset["text"]):
       row=[]
       for word in future:
-        if word in email: 
-         row.append(hame_tokens.count(word))
+        if word in str(email): 
+         row.append(tokens.count(word))
         else:row.append(0)
       row.append(is_spam)
-      transform_futue_to_dataframe[len(transform_futue_to_dataframe)]=row
+      data.append(row)
+   return data
 
 
 origin_data_set=pd.read_csv("emails.csv")# read data set 
@@ -43,19 +44,26 @@ spam_future=fe.Uniqe(hame_tokens)
 frq_hame_future=[[hame_tokens.count(words), words ] for words in hame_future]
 frq_spam_future=[[hame_tokens.count(words), words ] for words in hame_future]
 
-frq_hame_future=sorted(frq_hame_future, key=lambda x:x[0])
-frq_spam_future=sorted(frq_spam_future, key=lambda x:x[0])
+frq_hame_future=sorted(frq_hame_future, key=lambda x:x[0],reverse=True)
+frq_spam_future=sorted(frq_spam_future, key=lambda x:x[0],reverse=True)
+
+frq_hame_future=frq_hame_future[1:6]
+frq_spam_future=frq_spam_future[1:6]
 print(frq_spam_future)
-frq_hame_future=frq_hame_future[:5]
-frq_spam_future=frq_spam_future[:5]
-future=frq_hame_future
-future=future.extend(frq_spam_future)
-future.append("Is_spam")
+future=[]
+for item in frq_hame_future:
+   future.append(item[1])
+for item in frq_spam_future:
+   future.append(item[1])
+future.extend(["is_spam"])
+print(future)
 #                                                make future 
-transform_futue_to_dataframe =pd.DataFrame(columns=future)
-make_future(ham_email_form_original_dataset,0)
-make_future(spam_email_form_original_dataset,1)
-print(transform_futue_to_dataframe.iloc)
+data=[[]]
+make_Dataframe(ham_email_form_original_dataset,0,hame_tokens)
+make_Dataframe(spam_email_form_original_dataset,1,spam_tokens)
+transform_futue_to_dataframe =pd.DataFrame( data,columns=future)
+print(transform_futue_to_dataframe)
+#                                                make future 
 
 
 
