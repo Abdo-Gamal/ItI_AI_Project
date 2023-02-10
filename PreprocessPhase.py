@@ -3,7 +3,7 @@ from nltk.stem import PorterStemmer
 import numpy as np
 import pandas as pd
 import string
-#                                            preprocess section
+
 #                                            preprocess section
 
 #                                         functions to remove punctuation from dataset
@@ -37,47 +37,3 @@ def DeEmojify(text):
     return text.encode("ascii","ignore").decode("ascii")
 text4="📙 Emojipedia — 😃 Home of Emoji Meanings 💁👌🎍😍"
 # print(DeEmojify(text4))
-
-#                                            future extraction section
-#                                            future extraction section
-
-#                                              uniqe function 
-def Uniqe(sequence):
-    seen=set()
-    return [x for x in sequence if not (x in seen or seen.add(x))]
-
-#                                              uniqe function 
-def vectorize(tokens):
-    vect=[]
-    for w in filter_vocab:
-      vect.append(tokens.count(w))
-    return vect
-#                                              use vectorize and Uniqe
-stop_words1=[':',';','?',',','.','!']#stop_words can get form nltk
-spcial_char1=[':',';','?',',','.','!']#spcial_char can get from str.panctuation
-string1="Welcom to Greate leaning ,now start leaning to great welcom "
-string2="leaning is good practice"
-
-string1=string1.lower()
-string2=string2.lower()
-
-tokens1=string1.split()
-tokens2=string2.split()
-print(tokens1)
-print(tokens2)
-
-vocab=Uniqe( tokens1+tokens2)
-print(vocab)
-
-filter_vocab=[]
-
-for w in vocab:
-    if w not in stop_words1 and w not in spcial_char1:
-       filter_vocab.append(w)
-
-print(filter_vocab)
-vector1=vectorize(tokens1)
-print(vector1)
-vector2=vectorize(tokens2)
-
-print(vector2)
