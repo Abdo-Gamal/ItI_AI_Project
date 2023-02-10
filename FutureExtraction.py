@@ -28,11 +28,11 @@ string2=string2.lower()
 
 tokens1=string1.split()
 tokens2=string2.split()
-print(f" tokens1 = {tokens1}")
-print(f" tokens2 = {tokens2}\n")
+# print(f" tokens1 = {tokens1}")
+# print(f" tokens2 = {tokens2}\n")
 
 vocab=Uniqe( tokens1+tokens2)
-print(f" vecab= {vocab}")
+# print(f" vecab= {vocab}")
 
 filter_vocab=[]
 
@@ -40,9 +40,9 @@ for w in vocab:
     if w not in stop_words1 and w not in spcial_char1:
        filter_vocab.append(w)
 
-print(f"filter_voca ={ filter_vocab}\n")
-vector1=vectorize(tokens1)
-print(vector1)
-vector2=vectorize(tokens2)
+# print(f"filter_voca ={ filter_vocab}\n")
+# vector1=vectorize(tokens1)
+# print(vector1)
+# vector2=vectorize(tokens2)
 
-print(vector2)
+# print(vector2)
