@@ -19,9 +19,9 @@ def make_Dataframe(email_form_original_dataset,is_spam,tokens):
    for i,email in enumerate(email_form_original_dataset["text"]):
       row=[]
       for word in future:
-        if word in str(email): 
-         row.append(tokens.count(word))
-        else:row.append(0)
+          if word in str(email): 
+            row.append(tokens.count(word))
+          else:row.append(0)
       row.append(is_spam)
       data.append(row)
    return data
@@ -40,27 +40,30 @@ spam_tokens=prepareDataSet(spam_email_form_original_dataset_as_string)
 
 #                                                extract futures from dataset
 hame_future=fe.Uniqe(hame_tokens)
-spam_future=fe.Uniqe(hame_tokens)
+spam_future=fe.Uniqe(spam_tokens)
 frq_hame_future=[[hame_tokens.count(words), words ] for words in hame_future]
-frq_spam_future=[[hame_tokens.count(words), words ] for words in hame_future]
+frq_spam_future=[[spam_tokens.count(words), words ] for words in spam_future]
 
 frq_hame_future=sorted(frq_hame_future, key=lambda x:x[0],reverse=True)
 frq_spam_future=sorted(frq_spam_future, key=lambda x:x[0],reverse=True)
 
-frq_hame_future=frq_hame_future[1:6]
-frq_spam_future=frq_spam_future[1:6]
-print(frq_spam_future)
+frq_hame_future=frq_hame_future[1:10]
+frq_spam_future=frq_spam_future[1:10]
+
 future=[]
 for item in frq_hame_future:
    future.append(item[1])
 for item in frq_spam_future:
    future.append(item[1])
-future.extend(["is_spam"])
-print(future)
+
+future.append("is_spam")
+future=fe.Uniqe(future)
 #                                                make future 
 data=[[]]
 make_Dataframe(ham_email_form_original_dataset,0,hame_tokens)
 make_Dataframe(spam_email_form_original_dataset,1,spam_tokens)
+print(future)
+print(data)
 transform_futue_to_dataframe =pd.DataFrame( data,columns=future)
 print(transform_futue_to_dataframe)
 #                                                make future 
