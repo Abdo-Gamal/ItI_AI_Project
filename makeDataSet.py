@@ -66,11 +66,11 @@ def mainFunction():
    make_Dataframe(spam_email_form_original_dataset,1,spam_tokens,future,data)
    # print(future)
    # print(data)
-   transform_futue_to_dataframe =pd.DataFrame( data,columns=future)
+   transform_futue_to_dataframe =pd.DataFrame( data ,columns=future)
+   # print(transform_futue_to_dataframe)
+   transform_futue_to_dataframe.to_csv('myfuturesfile.csv',index=False)    #      save in file 
+
    print(transform_futue_to_dataframe)
-   #                       save in file 
-   transform_futue_to_dataframe.to_csv('myfuturesfile.csv') 
-
-
+ 
 mainFunction()
 
