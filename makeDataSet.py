@@ -64,11 +64,13 @@ def mainFunction():
    data.clear()
    make_Dataframe(ham_email_form_original_dataset,0,hame_tokens,future,data)
    make_Dataframe(spam_email_form_original_dataset,1,spam_tokens,future,data)
-   print(future)
-   print(data)
+   # print(future)
+   # print(data)
    transform_futue_to_dataframe =pd.DataFrame( data,columns=future)
    print(transform_futue_to_dataframe)
-    #                       make future 
+   #                       save in file 
+   transform_futue_to_dataframe.to_csv('myfuturesfile.csv') 
+
 
 mainFunction()
 
